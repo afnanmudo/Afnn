@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage & Thrift Clothing - ร้านเสื้อมือสอง</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* Category Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+
+        /* Product Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .badge {
+            align-self: flex-start;
+            background-color: #e9ecef;
+            color: #495057;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .product-size {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #d9534f;
+        }
+
+        .btn-buy {
+            background-color: #06C755; /* LINE Green */
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background-color: #05b34c;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #888;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VINTAGE THRIFT SHOP</h1>
+        <p>เสื้อผ้ามือสองคัดเกรด A สภาพดี ของแท้ 100%</p>
+    </header>
+
+    <!-- หมวดหมู่สินค้า -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCategory('all')">ทั้งหมด</button>
+        <button class="filter-btn" onclick="filterCategory('tshirt')">เสื้อยืด</button>
+        <button class="filter-btn" onclick="filterCategory('shirt')">เสื้อเชิ้ต</button>
+        <button class="filter-btn" onclick="filterCategory('jacket')">แจ็คเก็ต/สเวตเตอร์</button>
+    </div>
+
+    <!-- รายการสินค้า -->
+    <div class="container">
+        <div class="product-grid" id="productGrid">
+            
+            <!-- สินค้าชิ้นที่ 1 -->
+            <div class="product-card" data-category="tshirt">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="เสื้อยืด" class="product-img">
+                <div class="product-info">
+                    <span class="badge">สภาพ 95%</span>
+                    <h3 class="product-title">เสื้อยืด Vintage 90s</h3>
+                    <p class="product-size">ขนาด: อก 42" | ยาว 28" (L)</p>
+                    <div class="price-row">
+                        <span class="price">฿250</span>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Vintage%2090s%20(฿250)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 2 -->
+            <div class="product-card" data-category="shirt">
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="เสื้อเชิ้ต" class="product-img">
+                <div class="product-info">
+                    <span class="badge">สภาพ 90%</span>
+                    <h3 class="product-title">เสื้อเชิ้ตฮาวาย ลายวินเทจ</h3>
+                    <p class="product-size">ขนาด: อก 44" | ยาว 29" (XL)</p>
+                    <div class="price-row">
+                        <span class="price">฿320</span>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อเชิ้ตฮาวาย%20(฿320)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 3 -->
+            <div class="product-card" data-category="jacket">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500" alt="แจ็คเก็ต" class="product-img">
+                <div class="product-info">
+                    <span class="badge">สภาพ 98%</span>
+                    <h3 class="product-title">แจ็คเก็ตยีนส์ หนานุ่ม</h3>
+                    <p class="product-size">ขนาด: อก 40" | ยาว 26" (M)</p>
+                    <div class="price-row">
+                        <span class="price">฿590</span>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20แจ็คเก็ตยีนส์%20(฿590)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 4 -->
+            <div class="product-card" data-category="tshirt">
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500" alt="เสื้อยืดสีดำ" class="product-img">
+                <div class="product-info">
+                    <span class="badge">สภาพ 92%</span>
+                    <h3 class="product-title">เสื้อยืด Oversize สีดำ</h3>
+                    <p class="product-size">ขนาด: อก 46" | ยาว 30" (XL)</p>
+                    <div class="price-row">
+                        <span class="price">฿190</span>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Oversize%20(฿190)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Vintage Thrift Shop. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript สำหรับระบบกรองสินค้า -->
+    <script>
+        function filterCategory(category) {
+            // สลับสถานะปุ่ม Active
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // ซ่อน / แสดง สินค้า
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if (category === 'all' || product.getAttribute('data-category') === category) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
