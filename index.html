@@ -24,7 +24,7 @@
             background-color: #1a1a1a;
             color: #fff;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
         }
 
         header h1 {
@@ -43,14 +43,14 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin: 20px 10px;
+            margin: 25px 10px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
             background-color: #fff;
             border: 1px solid #ddd;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.95rem;
@@ -174,12 +174,12 @@
         <p>เสื้อผ้ามือสองคัดเกรด A สภาพดี ของแท้ 100%</p>
     </header>
 
-    <!-- หมวดหมู่สินค้า -->
+    <!-- ปุ่มหมวดหมู่สินค้า -->
     <div class="filter-container">
-        <button class="filter-btn active" onclick="filterCategory('all')">ทั้งหมด</button>
-        <button class="filter-btn" onclick="filterCategory('tshirt')">เสื้อยืด</button>
-        <button class="filter-btn" onclick="filterCategory('shirt')">เสื้อเชิ้ต</button>
-        <button class="filter-btn" onclick="filterCategory('jacket')">แจ็คเก็ต/สเวตเตอร์</button>
+        <button class="filter-btn active" onclick="filterCategory(event, 'all')">ทั้งหมด</button>
+        <button class="filter-btn" onclick="filterCategory(event, 'tshirt')">เสื้อยืด</button>
+        <button class="filter-btn" onclick="filterCategory(event, 'shirt')">เสื้อเชิ้ต</button>
+        <button class="filter-btn" onclick="filterCategory(event, 'jacket')">แจ็คเก็ต/สเวตเตอร์</button>
     </div>
 
     <!-- รายการสินค้า -->
@@ -195,7 +195,7 @@
                     <p class="product-size">ขนาด: อก 42" | ยาว 28" (L)</p>
                     <div class="price-row">
                         <span class="price">฿250</span>
-                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Vintage%2090s%20(฿250)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Vintage%2090s%20(฿250)" target="_blank" class="btn-buy">สั่งซื้อผ่าน LINE</a>
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                     <p class="product-size">ขนาด: อก 44" | ยาว 29" (XL)</p>
                     <div class="price-row">
                         <span class="price">฿320</span>
-                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อเชิ้ตฮาวาย%20(฿320)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อเชิ้ตฮาวาย%20(฿320)" target="_blank" class="btn-buy">สั่งซื้อผ่าน LINE</a>
                     </div>
                 </div>
             </div>
@@ -223,7 +223,7 @@
                     <p class="product-size">ขนาด: อก 40" | ยาว 26" (M)</p>
                     <div class="price-row">
                         <span class="price">฿590</span>
-                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20แจ็คเก็ตยีนส์%20(฿590)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20แจ็คเก็ตยีนส์%20(฿590)" target="_blank" class="btn-buy">สั่งซื้อผ่าน LINE</a>
                     </div>
                 </div>
             </div>
@@ -237,7 +237,7 @@
                     <p class="product-size">ขนาด: อก 46" | ยาว 30" (XL)</p>
                     <div class="price-row">
                         <span class="price">฿190</span>
-                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Oversize%20(฿190)" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                        <a href="https://line.me/ti/p/~YOUR_LINE_ID?text=สนใจสั่งซื้อ:%20เสื้อยืด%20Oversize%20(฿190)" target="_blank" class="btn-buy">สั่งซื้อผ่าน LINE</a>
                     </div>
                 </div>
             </div>
@@ -251,13 +251,11 @@
 
     <!-- JavaScript สำหรับระบบกรองสินค้า -->
     <script>
-        function filterCategory(category) {
-            // สลับสถานะปุ่ม Active
+        function filterCategory(e, category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            e.target.classList.add('active');
 
-            // ซ่อน / แสดง สินค้า
             const products = document.querySelectorAll('.product-card');
             products.forEach(product => {
                 if (category === 'all' || product.getAttribute('data-category') === category) {
